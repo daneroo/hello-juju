@@ -1,0 +1,14 @@
+{
+    "name": "hello-juju",
+    "description": "A node.js test app",
+    "version": "0.0.1",
+    "dependencies": {
+    },
+    "repository": {
+        "type": "git",
+        "url": "http://github.com/daneroo/hello-juju.git"
+    },
+    "engines": {
+        "node": ">= 0.8.0"
+    }
+}
