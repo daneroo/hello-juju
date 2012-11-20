@@ -42,7 +42,7 @@ if(config.mongo_replset) {
 }
 
 
-var db = new mongo.Db('mynodeapp', replSet||server,{safe:true});
+var db = new mongo.Db('jujuone', replSet||server,{safe:true});
 db.open(function(err, db){
   if(err){
         console.log(err.stack);    
