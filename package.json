@@ -3,6 +3,7 @@
     "description": "A node.js test app",
     "version": "0.0.1",
     "dependencies": {
+        "mongodb": "1.2.x"
     },
     "repository": {
         "type": "git",
