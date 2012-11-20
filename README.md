@@ -11,3 +11,4 @@ Todo
 * Add total hits at /total
 * Add error handling (conection dropping...)
 * Actually fork mmm/testnode, and submit pull request.
+* Add dbname to config
