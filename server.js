@@ -45,9 +45,9 @@ var track_hit = function(request, response, db){
     var address = request.headers['x-forwarded-for'] || request.connection.remoteAddress;
     hit_record = {
       'node': selfIP,
-      'server': request.headers['host'],
-      'forwarded': request.headers['x-forwarded-for']||null,
-      'remote': request.connection.remoteAddress,
+      // 'server': request.headers['host'],
+      // 'forwarded': request.headers['x-forwarded-for']||null,
+      // 'remote': request.connection.remoteAddress,
       'client': address,
       'ts': new Date()
     };
