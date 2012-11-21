@@ -20,8 +20,12 @@ var show_log = function(request, response, db){
 var track_hit = function(request, response, db){
   db.collection('addresses', function(err, collection){
     var address = request.headers['x-forwarded-for'] || request.connection.remoteAddress;
-    hit_record = { 'client': address,'ts': new Date() };
-
+    hit_record = {
+      'server': request.headers['host'],
+      'forwarded': request.headers['x-forwarded-for']||null,
+      'client': address,
+      'ts': new Date()
+    };
     collection.insert( hit_record, {safe:true}, function(err){
       if(err) { 
         console.log(err.stack);
