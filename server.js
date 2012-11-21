@@ -5,6 +5,29 @@ var config = require('./config/config'),
 // var mime = 'application/json';
 var mime = 'text/plain';
 
+function getIP(argument) {
+  var firstIP = null;
+  var os = require('os');
+  var ifaces = os.networkInterfaces();
+  for(var dev in ifaces) {
+    var alias = 0;
+    ifaces[dev].forEach(function(details) {
+      if(details.family == 'IPv4') {
+        if (!firstIP && !details.internal){
+          firstIP=details.address;
+        }
+        console.log(dev + (alias ? ':' + alias : ''), details);
+
+        ++alias;
+      }
+    });
+  }
+  console.log("I will identify myself as",firstIP);
+  return firstIP;
+}
+
+var selfIP = getIP();
+
 var show_log = function(request, response, db){
   db.collection('addresses', function(err, collection){
     collection.find({}, {limit:10, sort:[['_id','desc']]}, function(err, cursor){
@@ -21,6 +44,7 @@ var track_hit = function(request, response, db){
   db.collection('addresses', function(err, collection){
     var address = request.headers['x-forwarded-for'] || request.connection.remoteAddress;
     hit_record = {
+      'node': selfIP,
       'server': request.headers['host'],
       'forwarded': request.headers['x-forwarded-for']||null,
       'remote': request.connection.remoteAddress,
