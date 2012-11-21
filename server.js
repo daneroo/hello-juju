@@ -23,6 +23,7 @@ var track_hit = function(request, response, db){
     hit_record = {
       'server': request.headers['host'],
       'forwarded': request.headers['x-forwarded-for']||null,
+      'remote': request.connection.remoteAddress,
       'client': address,
       'ts': new Date()
     };
